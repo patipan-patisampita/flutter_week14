@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'contact.dart';
 import 'home.dart';
+import 'list_view_builder.dart';
 import 'list_view_demo.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext buildContext) {
     //2.build
     return MaterialApp(
-      home: ListViewPage(),
+      home: ListViewBuilder(),
     );
   }
 }
