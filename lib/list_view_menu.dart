@@ -1,31 +1,49 @@
 import 'package:flutter/material.dart';
 
-class ListViewMenu extends StatelessWidget {
-  const ListViewMenu({Key? key}) : super(key: key);
+class ListMenu {
+  final String? title;
+  final String? subTitle;
+  final IconData? icon;
+
+  const ListMenu({this.title, this.subTitle, this.icon});
+}
+
+List<ListMenu> menus = [
+  const ListMenu(title: 'MENU-1', subTitle: 'SUB-1', icon: Icons.person),
+  const ListMenu(title: 'MENU-2', subTitle: 'SUB-2', icon: Icons.person_add),
+  const ListMenu(title: 'MENU-3', subTitle: 'SUB-3', icon: Icons.wifi),
+  const ListMenu(title: 'MENU-4', subTitle: 'SUB-1', icon: Icons.wifi),
+];
+
+class ListViewMenuPage extends StatelessWidget {
+  const ListViewMenuPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("List View Menu"),
+        title: const Text('List View Menu'),
       ),
       body: Container(
+        padding: const EdgeInsets.all(5),
         child: ListView.separated(
-          padding: EdgeInsets.all(8.0),
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return Divider(color: Colors.red);
+          itemCount: menus.length,
+          separatorBuilder: (_, index) {
+            return const Divider(
+              color: Colors.red,
+            );
           },
-          separatorBuilder: (context, index) {
+          itemBuilder: (context, index) {
             return ListTile(
-              title: Text("MENU-1"),
-              subtitle: Text("Sub-1"),
-              leading: CircleAvatar(
-                child: Icon(Icons.person),
-              ),
-              trailing: Icon(Icons.arrow_right),
+              title: Text('${menus[index].title}'),
+              subtitle: Text('${menus[index].subTitle}'),
+              leading: CircleAvatar(child: Icon(menus[index].icon)),
+              trailing: const Icon(Icons.arrow_right),
               onTap: () {
-                debugPrint("MENU-1");
+                debugPrint(menus[index].title);
+                if (Navigator.canPop(context)) {
+                  Navigator.pop<String>(context, menus[index].title);
+                }
               },
             );
           },
