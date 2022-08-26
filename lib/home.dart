@@ -34,6 +34,16 @@ class _HomePageState extends State<HomePage> {
             UserAccountsDrawerHeader(
               accountName: Text("Mark"),
               accountEmail: Text("mark@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                child: Icon(Icons.android),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+              },
             )
           ],
         ),
